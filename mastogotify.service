@@ -1,0 +1,12 @@
+[Unit]
+Description=Bot to send Mastodon notifications via Gotify
+After=network.target
+
+[Service]
+Type=simple
+User=hooker
+Group=hooker
+ExecStart=/home/hooker/Mastodon-to-Gotify/main.py
+
+[Install]
+WantedBy=multi-user.target
