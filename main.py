@@ -20,9 +20,6 @@ while True:
     # Iterate over the notifications
 
     for notif in notifications:
-        # Get the ID as a unique identifier
-        notification_id = notif['id']
-
         # Get the notification type and issuer
         notification_type = notif['type']
         who = notif['account']['display_name']
