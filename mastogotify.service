@@ -6,6 +6,7 @@ After=network.target
 Type=simple
 User=hooker
 Group=hooker
+WorkingDirectory=/home/hooker/Mastodon-to-Gotify/
 ExecStart=/home/hooker/Mastodon-to-Gotify/main.py
 
 [Install]
