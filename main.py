@@ -3,7 +3,7 @@ from settings import *
 
 # Create Mastodon App
 masto = Mastodon(
-    access_token = f"{app_name}_cred.secret",
+    access_token = app_name + "_cred.secret",
     api_base_url = instance_url
 )
 
@@ -20,26 +20,40 @@ while True:
     # Iterate over the notifications
 
     for notif in notifications:
+        url = ''
         # Get the notification type and issuer
         notification_type = notif['type']
         who = notif['account']['display_name']
         # Write message depending on the notificaiton type
         if notification_type == 'mention':
             url = notif['status']['url']
-            msg = f"{who} mentioned you :\n{url}"
+            msg = who +" mentioned you"
         if notification_type == 'reblog':
             url = notif['status']['url']
-            msg = f"{who} retoot your status :\n{url}"
+            msg = who + " retoot your status"
         if notification_type == 'favourite':
             url = notif['status']['url']
-            msg = f"{who} favoured your toot :\n{url}"
+            msg = who + " favoured your toot"
         if notification_type == 'follow':
-            msg = f"{who} started following you"
+            msg = who + " started following you"
         # Push the notification to the gotify server
+        if (url != ''):
+            data={
+                'title': "Mastodon",
+                'message': msg,
+                'priority': 10,
+                'extras': {
+                     'client::notification': {
+                          'click': {'url': url}
+                      }
+                 }
+            }
+        else:
+            data={
+                'title': "Mastodon no extra",
+                'message': msg,
+                'priority': 10}
         r = requests.post(
-                f"{gotify_url}/message",
+                gotify_url + "/message",
                 headers=gotify_header,
-                data={
-                    'title': "Mastodon",
-                    'message': msg,
-                    'priority': 10})
+                json=data)
