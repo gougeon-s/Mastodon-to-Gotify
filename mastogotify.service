@@ -8,6 +8,8 @@ User=hooker
 Group=hooker
 WorkingDirectory=/home/hooker/Mastodon-to-Gotify/
 ExecStart=/home/hooker/Mastodon-to-Gotify/main.py
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
