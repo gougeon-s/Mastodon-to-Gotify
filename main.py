@@ -36,6 +36,8 @@ while True:
             msg = who + " favoured your toot"
         if notification_type == 'follow':
             msg = who + " started following you"
+        if notification_type == 'poll':
+            msg = "Poll is finished"
         # Push the notification to the gotify server
         if (url != ''):
             data={
