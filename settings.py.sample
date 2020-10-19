@@ -3,6 +3,7 @@ from mastodon import Mastodon
 import requests
 import time
 import os
+import string
 # Name of the app as seen by mastodon
 app_name = "some cool name"
 # The URL of your mastodon instance

@@ -39,6 +39,7 @@ while True:
         if notification_type == 'poll':
             msg = "Poll is finished"
         # Push the notification to the gotify server
+        msg = "".join(c for c in msg if c in string.printable)
         if (url != ''):
             data={
                 'title': "Mastodon",
