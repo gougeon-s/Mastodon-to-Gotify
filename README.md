@@ -12,6 +12,7 @@ Thirdly, run main.py
 
 It is advised to have it running as a service :
 ```
+sed -i "s/hooker/$USER/g" mastogotify.service
 sudo cp mastogotify.service /etc/systemd/system/
 sudo systemctl start mastogotify
 sudo systemctl enable mastogotify
